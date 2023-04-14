@@ -1,4 +1,5 @@
 
+wsteam_archive = 'C:/Program Files (x86)/Steam/steamapps/common/The Witness/data-pc.zip'
 macosx_archive = '/Users/Shared/Epic Games/TheWitness/The Witness.app/Contents/Resources/data-osx.zip'
 
 def theWitnessFileParserArguments(program_description, default_file=None):
@@ -17,7 +18,8 @@ def theWitnessFileParserArguments(program_description, default_file=None):
 
 	parser = argparse.ArgumentParser(description=program_description)
 
-	parser.add_argument('--macosx', '-M', action='append_const', dest='_from', const=macosx_archive, default=None, help='Take the file from the game\'s main archive (default: take the file from the file system)')
+	parser.add_argument('--macosx', '-M', action='append_const', dest='_from', const=macosx_archive, default=None, help='Take the file from the game\'s main archive on macos (default: take the file from the file system)')
+	parser.add_argument('--wsteam', '-S', action='append_const', dest='_from', const=wsteam_archive, default=None, help='Take the file from the game\'s main archive from the steam folder on windows (default: take the file from the file system)')
 	parser.add_argument('_from', nargs='*', action='append', default=default_file if default_file is not None else argparse.SUPPRESS, help='The file name (default: reads from standard input).')
 
 	parser.add_argument('--old-format', '--old', '-o', dest='newformat', action='store_false', help='Parse a file from an older version of the game')
